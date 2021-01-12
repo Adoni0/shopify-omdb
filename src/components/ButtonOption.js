@@ -1,12 +1,15 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 
-const ButtonOption = () => {
+const ButtonOption = ({ isNominated }) => {
     return (
-        <div>
-            <Button variant="outline-primary">Primary</Button>
-            <Button variant="outline-danger">Danger</Button>
-        </div>
+        <>
+            {!isNominated
+                ? <Button variant="outline-primary">Nominate</Button>
+                : <Button variant="outline-danger">Remove</Button>
+            }
+        </>
+
     )
 }
 

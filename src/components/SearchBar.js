@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SearchBar = ({ searchTerm, handleChange }) => {
+const SearchBar = ({ searchTerm, handleChange, handleEnterKeyPress }) => {
 
     const styles = {
         input: {
@@ -9,7 +9,6 @@ const SearchBar = ({ searchTerm, handleChange }) => {
         }
     }
 
-
     return (
             <input 
             onChange={(e) => handleChange(e)} 
@@ -17,6 +16,7 @@ const SearchBar = ({ searchTerm, handleChange }) => {
             style={styles.input} 
             type="text" 
             placeholder="Search By Movie Title"
+            onKeyDown={(e) => handleEnterKeyPress(e)}
             />
     )
 }

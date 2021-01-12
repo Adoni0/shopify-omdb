@@ -19,7 +19,7 @@ const ResultsList = ({ searchTerm, title, year }) => {
 
     return (
         <div style={styles.container}>
-            <p style={styles.results}>Results for "{searchTerm}"</p>
+            <p style={styles.results}>Press ENTER to view results for "{searchTerm}"</p>
             <ListGroup>
                 <ListGroup.Item>{title} ({year})</ListGroup.Item>
             </ListGroup>
