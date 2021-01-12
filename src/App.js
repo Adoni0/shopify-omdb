@@ -11,13 +11,26 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
+  const handleInputChange = (e) => {
+    const { value } = e.target;
+    setSearchTerm(value);
+  }
+
   return (
     <>
       <Spacer>
         <h1>The Shoppies</h1>
       </Spacer>
       <Spacer>
-        <SearchBar />
+        <SearchBar
+          handleChange={handleInputChange}
+          searchTerm={searchTerm}
+        />
+      </Spacer>
+      <Spacer>
+        <ResultsList 
+        searchTerm={searchTerm}
+        />
       </Spacer>
     </>
   );
