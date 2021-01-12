@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react'
+import SearchBar from './components/SearchBar'
+import ResultsList from './components/ResultsList'
+import Nominations from './components/Nominations'
+import ButtonOption from './components/ButtonOption'
+import Spacer from './components/Spacer'
 
 function App() {
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Spacer>
+        <h1>The Shoppies</h1>
+      </Spacer>
+      <Spacer>
+        <SearchBar />
+      </Spacer>
+    </>
   );
 }
 
