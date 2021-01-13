@@ -3,10 +3,20 @@ import { Carousel } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 
 const NominationsList = ({ nominations, removeNominee }) => {
+    const styles = {
+        container: {
+            display: 'flex', 
+            flexDirection: 'column',
+            borderStyle: 'inset',
+            width: 450,
+            height: 400
+        }
+    }
+
     return (
-        <>
+        <div style={styles.container}>
             <p style={{ fontWeight: "bold", fontSize: 18, marginBottom: 10 }}>Nominations</p>
-            <Carousel>
+            {nominations.length ? <Carousel>
                 {nominations.map(film => (
                     <Carousel.Item key={film.imdbID + '2'}>
                         <img 
@@ -26,7 +36,9 @@ const NominationsList = ({ nominations, removeNominee }) => {
                     </Carousel.Item>
                 ))}
             </Carousel>
-        </>
+            : <p>No Nominations Made</p>
+}
+        </div>
     )
 }
 

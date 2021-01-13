@@ -11,8 +11,8 @@ const ResultsList = ({ searchTerm, results, addNominee }) => {
         },
         container: {
             borderStyle: 'outset',
-            width: 400,
-            height: 300,
+            width: 450,
+            height: 400,
             overflow: 'auto'
         },
         list: {

@@ -63,19 +63,22 @@ function App() {
           handleEnterKeyPress={handleEnterKeyPress}
         />
       </Spacer>
-      <Spacer>
-        <ResultsList
-          searchTerm={searchTerm}
-          results={searchResults}
-          addNominee={addToNominations}
-        />
-      </Spacer>
-      <Spacer>
-        <NominationsList 
-        nominations={nominations}
-        removeNominee={removeNomination}
-        />
-      </Spacer>
+
+      <div style={{ display: 'flex', marginTop: 30, justifyContent: 'center' }}>
+        <div style={{ paddingRight: 10 }}>
+          <ResultsList
+            searchTerm={searchTerm}
+            results={searchResults}
+            addNominee={addToNominations}
+          />
+        </div>
+        <div style={{ paddingLeft: 10 }}>
+          <NominationsList
+            nominations={nominations}
+            removeNominee={removeNomination}
+          />
+        </div>
+      </div>
     </>
   );
 }
