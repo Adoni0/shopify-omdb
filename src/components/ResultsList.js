@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ButtonOption from './ButtonOption'
 import { ListGroup } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
-const ResultsList = ({ searchTerm, title, year }) => {
+const ResultsList = ({ searchTerm, results, addNominee }) => {
 
     const styles = {
         results: {
@@ -12,19 +13,36 @@ const ResultsList = ({ searchTerm, title, year }) => {
         container: {
             borderStyle: 'outset',
             width: 400,
-            height: 200,
-            overflow: 'scroll'
+            height: 300,
+            overflow: 'auto'
+        },
+        list: {
+            marginTop: 10,
+            fontSize: 12
         }
     }
+
 
     return (
         <div style={styles.container}>
             <p style={styles.results}>Press ENTER to view results for "{searchTerm}"</p>
             <ListGroup>
-                <ListGroup.Item>{title} ({year})</ListGroup.Item>
+                {results.map(movie => (
+                    <ListGroup.Item 
+                    style={styles.list} 
+                    key={movie.imdbID}
+                    >~ {movie.Title} ({movie.Year}) 
+                    <Button 
+                    variant="outline-primary"
+                    onClick={(movie) => addNominee(movie)}
+                    >
+                    Nominate
+                    </Button>
+                    </ListGroup.Item>
+                ))}
             </ListGroup>
         </div>
     )
 }
 
-export default ResultsList
+export default ResultsList;

@@ -1,9 +1,8 @@
 import './App.css';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import SearchBar from './components/SearchBar'
 import ResultsList from './components/ResultsList'
-import Nominations from './components/Nominations'
-import ButtonOption from './components/ButtonOption'
+import NominationsList from './components/NominationsList'
 import Spacer from './components/Spacer'
 import axios from 'axios'
 
@@ -16,7 +15,6 @@ function App() {
   const handleInputChange = (e) => {
     const { value } = e.target;
     setSearchTerm(value);
-
   }
 
   const handleEnterKeyPress = e => {
@@ -39,6 +37,16 @@ function App() {
     };
   }
 
+  const addToNominations = (nominee) => {
+    let nominationsDuplicate = [...nominations];
+    nominationsDuplicate.push(nominee);
+    setNominations(nominationsDuplicate);
+  }
+
+  const removeNomination = () => {
+    
+  }
+
   return (
     <>
       <Spacer>
@@ -54,6 +62,13 @@ function App() {
       <Spacer>
         <ResultsList
           searchTerm={searchTerm}
+          results={searchResults}
+          addNominee={addToNominations}
+        />
+      </Spacer>
+      <Spacer>
+        <NominationsList 
+        nominations={nominations}
         />
       </Spacer>
     </>
