@@ -43,8 +43,12 @@ function App() {
     setNominations(nominationsDuplicate);
   }
 
-  const removeNomination = () => {
-    
+  const removeNomination = (nominee) => {
+    let nominationsDuplicate = [...nominations];
+    const newNominationsArray = nominationsDuplicate.filter(nom => {
+      return nom.imdbID !== nominee.imdbID
+    });
+    setNominations(newNominationsArray)
   }
 
   return (
@@ -69,6 +73,7 @@ function App() {
       <Spacer>
         <NominationsList 
         nominations={nominations}
+        removeNominee={removeNomination}
         />
       </Spacer>
     </>

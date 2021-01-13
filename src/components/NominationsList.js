@@ -2,7 +2,7 @@ import React from 'react'
 import { Carousel } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 
-const NominationsList = ({ nominations }) => {
+const NominationsList = ({ nominations, removeNominee }) => {
     return (
         <>
             <p style={{ fontWeight: "bold", fontSize: 18, marginBottom: 10 }}>Nominations</p>
@@ -16,7 +16,12 @@ const NominationsList = ({ nominations }) => {
                         <Carousel.Caption>
                             <h3>{film.Title}</h3>
                             <p>{film.Year}</p>
-                            <Button ariant="outline-danger">Remove</Button>
+                            <Button 
+                            ariant="outline-danger"
+                            onClick={(film) => removeNominee(film)}
+                            >
+                            Remove
+                            </Button>
                         </Carousel.Caption>
                     </Carousel.Item>
                 ))}
