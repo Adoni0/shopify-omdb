@@ -5,6 +5,7 @@ import ResultsList from './components/ResultsList'
 import NominationsList from './components/NominationsList'
 import Spacer from './components/Spacer'
 import axios from 'axios'
+import Carousel from 'react-bootstrap/Carousel'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
   const addToNominations = (nominee) => {
     let nominationsDuplicate = [...nominations];
     nominationsDuplicate.push(nominee);
+    console.log(nominee)
     setNominations(nominationsDuplicate);
   }
 
@@ -73,12 +75,14 @@ function App() {
           />
         </div>
         <div style={{ paddingLeft: 10 }}>
+        </div>
+      </div>
           <NominationsList
             nominations={nominations}
             removeNominee={removeNomination}
           />
-        </div>
-      </div>
+
+      
     </>
   );
 }

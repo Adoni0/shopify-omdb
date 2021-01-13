@@ -1,11 +1,32 @@
 import React from 'react'
-import { Carousel } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
+import Carousel from 'react-multi-carousel';
 import { Button } from 'react-bootstrap'
+
+
+const responsive = {
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3,
+        slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2,
+        slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+        slidesToSlide: 1 // optional, default to 1.
+    }
+};
+
 
 const NominationsList = ({ nominations, removeNominee }) => {
     const styles = {
         container: {
-            display: 'flex', 
+            display: 'flex',
             flexDirection: 'column',
             borderStyle: 'inset',
             width: 450,
@@ -14,32 +35,57 @@ const NominationsList = ({ nominations, removeNominee }) => {
     }
 
     return (
-        <div style={styles.container}>
-            <p style={{ fontWeight: "bold", fontSize: 18, marginBottom: 10 }}>Nominations</p>
-            {nominations.length ? <Carousel>
-                {nominations.map(film => (
-                    <Carousel.Item key={film.imdbID + '2'}>
-                        <img 
-                        className="d-block w-100"
-                        src={film.Poster}
+
+        <Carousel
+            swipeable={false}
+            draggable={false}
+            showDots={true}
+            responsive={responsive}
+            infinite={true}
+            autoPlaySpeed={1000}
+            keyBoardControl={true}
+            customTransition="all .5"
+            transitionDuration={500}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px"
+        >
+            {nominations.length
+                ? nominations.map((nominee, index) => (
+                    <div key={index}>
+                        <CarouselCard 
+                        film={nominee}
+                        removeNominee={removeNominee}
                         />
-                        <Carousel.Caption>
-                            <h3>{film.Title}</h3>
-                            <p>{film.Year}</p>
-                            <Button 
-                            ariant="outline-danger"
-                            onClick={(film) => removeNominee(film)}
-                            >
-                            Remove
-                            </Button>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                ))}
-            </Carousel>
-            : <p>No Nominations Made</p>
-}
-        </div>
+                    </div>
+                ))
+                : <p>No Nominations made</p>
+            }
+        </Carousel>
+
     )
 }
 
-export default NominationsList
+export default NominationsList;
+
+const CarouselCard = ({ film, removeNominee }) => {
+    // console.log(film)
+    return (
+        <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={film.Poster} />
+            <Card.Body>
+                <Card.Title>{film.Title}</Card.Title>
+                <Card.Text>{film.Year}</Card.Text>
+                <Button
+                    variant="outline-danger"
+                    onClick={(film) => removeNominee(film)}
+                >
+                    Remove
+                </Button>
+            </Card.Body>
+        </Card>
+
+
+    )
+}

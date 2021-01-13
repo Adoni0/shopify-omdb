@@ -33,7 +33,7 @@ const ResultsList = ({ searchTerm, results, addNominee }) => {
                     >~ {movie.Title} ({movie.Year}) 
                     <Button 
                     variant="outline-primary"
-                    onClick={(movie) => addNominee(movie)}
+                    onClick={() => addNominee(movie)}
                     >
                     Nominate
                     </Button>
