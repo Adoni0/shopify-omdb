@@ -1,53 +1,44 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
-import Carousel from 'react-multi-carousel';
+import Carousel from 'react-multi-carousel'
 import { Button } from 'react-bootstrap'
 
 
 const responsive = {
     desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 3,
-        slidesToSlide: 3 // optional, default to 1.
+        breakpoint: { max: 3000, min: 1050 },
+        items: 5,
+        slidesToSlide: 1 // optional, default to 1.
     },
     tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 2,
-        slidesToSlide: 2 // optional, default to 1.
+        breakpoint: { max: 1054, min: 885 },
+        items: 4,
+        slidesToSlide: 1 // optional, default to 1.
     },
     mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 1,
+        breakpoint: { max: 885, min: 0 },
+        items: 2,
         slidesToSlide: 1 // optional, default to 1.
     }
 };
 
 
 const NominationsList = ({ nominations, removeNominee }) => {
-    const styles = {
-        container: {
-            display: 'flex',
-            flexDirection: 'column',
-            borderStyle: 'inset',
-            width: 450,
-            height: 400
-        }
-    }
 
     return (
 
         <Carousel
-            swipeable={false}
+            swipeable={true}
             draggable={false}
-            showDots={true}
+            showDots={false}
             responsive={responsive}
             infinite={true}
-            autoPlaySpeed={1000}
+            autoPlaySpeed={2000}
             keyBoardControl={true}
             customTransition="all .5"
             transitionDuration={500}
             containerClass="carousel-container"
-            removeArrowOnDeviceType={["tablet", "mobile"]}
+            removeArrowOnDeviceType={["desktop"]}
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
         >
@@ -60,7 +51,7 @@ const NominationsList = ({ nominations, removeNominee }) => {
                         />
                     </div>
                 ))
-                : <p>No Nominations made</p>
+                : <h3>No Nominations made</h3>
             }
         </Carousel>
 
@@ -70,16 +61,16 @@ const NominationsList = ({ nominations, removeNominee }) => {
 export default NominationsList;
 
 const CarouselCard = ({ film, removeNominee }) => {
-    // console.log(film)
+  
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '14rem' }}>
             <Card.Img variant="top" src={film.Poster} />
             <Card.Body>
                 <Card.Title>{film.Title}</Card.Title>
                 <Card.Text>{film.Year}</Card.Text>
                 <Button
                     variant="outline-danger"
-                    onClick={(film) => removeNominee(film)}
+                    onClick={() => removeNominee(film, film.imdbID)}
                 >
                     Remove
                 </Button>

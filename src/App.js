@@ -3,7 +3,6 @@ import { useState } from 'react'
 import SearchBar from './components/SearchBar'
 import ResultsList from './components/ResultsList'
 import NominationsList from './components/NominationsList'
-import Spacer from './components/Spacer'
 import axios from 'axios'
 import Carousel from 'react-bootstrap/Carousel'
 
@@ -29,8 +28,14 @@ function App() {
         }
       })
         .then(response => {
-          console.log(response.data.Search)
-          setSearchResults(response.data.Search)
+          var filmResults = [...response.data.Search];
+          var result = filmResults.map(film => {
+            var o = Object.assign({}, film);
+            o.isActive = true;
+            return o;
+          });
+          console.log(result);
+          setSearchResults(result);
         })
         .catch(error => {
           console.log(error)
@@ -38,51 +43,66 @@ function App() {
     };
   }
 
-  const addToNominations = (nominee) => {
+  const addToNominations = (nominee, id) => {
     let nominationsDuplicate = [...nominations];
     nominationsDuplicate.push(nominee);
-    console.log(nominee)
     setNominations(nominationsDuplicate);
+
+    disableButton(id);
   }
 
-  const removeNomination = (nominee) => {
+  const disableButton = id => {
+    let results = [...searchResults];
+    results.forEach(movie => {
+      return movie.imdbID === id ? movie.isActive = false : null
+    })
+  }
+
+  const activateButton = id => {
+    let results = [...searchResults];
+    results.forEach(movie => {
+      return movie.imdbID === id ? movie.isActive = true : null
+    })
+  }
+
+  const removeNomination = (nominee, id) => {
     let nominationsDuplicate = [...nominations];
     const newNominationsArray = nominationsDuplicate.filter(nom => {
       return nom.imdbID !== nominee.imdbID
     });
-    setNominations(newNominationsArray)
+    setNominations(newNominationsArray);
+
+    activateButton(id);
   }
 
   return (
     <>
-      <Spacer>
-        <h1>The Shoppies</h1>
-      </Spacer>
-      <Spacer>
-        <SearchBar
-          handleChange={handleInputChange}
-          searchTerm={searchTerm}
-          handleEnterKeyPress={handleEnterKeyPress}
-        />
-      </Spacer>
-
       <div style={{ display: 'flex', marginTop: 30, justifyContent: 'center' }}>
-        <div style={{ paddingRight: 10 }}>
+        <div style={{ paddingRight: 10, marginTop: 55, marginRight: 40 }}>
+          <h1>The Shoppies</h1>
+          <SearchBar
+            handleChange={handleInputChange}
+            searchTerm={searchTerm}
+            handleEnterKeyPress={handleEnterKeyPress}
+          />
+        </div>
+        <div style={{ paddingLeft: 10 }}>
           <ResultsList
             searchTerm={searchTerm}
             results={searchResults}
             addNominee={addToNominations}
           />
         </div>
-        <div style={{ paddingLeft: 10 }}>
-        </div>
-      </div>
-          <NominationsList
-            nominations={nominations}
-            removeNominee={removeNomination}
-          />
 
-      
+      </div>
+
+      <div style={{ paddingTop: 15 }}>
+        <NominationsList
+          nominations={nominations}
+          removeNominee={removeNomination}
+        />
+      </div>
+
     </>
   );
 }

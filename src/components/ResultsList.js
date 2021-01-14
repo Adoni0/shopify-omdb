@@ -11,8 +11,8 @@ const ResultsList = ({ searchTerm, results, addNominee }) => {
         },
         container: {
             borderStyle: 'outset',
-            width: 450,
-            height: 400,
+            width: 550,
+            height: 300,
             overflow: 'auto'
         },
         list: {
@@ -31,9 +31,13 @@ const ResultsList = ({ searchTerm, results, addNominee }) => {
                     style={styles.list} 
                     key={movie.imdbID}
                     >~ {movie.Title} ({movie.Year}) 
-                    <Button 
+                    <Button
+                    id={movie.imdbID}
+                    disabled={!movie.isActive}
+                    className="ml-3"
+                    size="sm" 
                     variant="outline-primary"
-                    onClick={() => addNominee(movie)}
+                    onClick={() => addNominee(movie, movie.imdbID)}
                     >
                     Nominate
                     </Button>

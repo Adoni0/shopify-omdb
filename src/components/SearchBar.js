@@ -4,8 +4,8 @@ const SearchBar = ({ searchTerm, handleChange, handleEnterKeyPress }) => {
 
     const styles = {
         input: {
-            width: 300,
-            height: 20
+            width: 400,
+            height: 25
         }
     }
 
