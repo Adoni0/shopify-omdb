@@ -1,16 +1,17 @@
 import './App.css';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SearchBar from './components/SearchBar'
 import ResultsList from './components/ResultsList'
 import NominationsList from './components/NominationsList'
 import axios from 'axios'
-import Carousel from 'react-bootstrap/Carousel'
+
 
 function App() {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [nominations, setNominations] = useState([]);
+
 
   const handleInputChange = (e) => {
     const { value } = e.target;
@@ -29,18 +30,34 @@ function App() {
       })
         .then(response => {
           var filmResults = [...response.data.Search];
+
           var result = filmResults.map(film => {
             var o = Object.assign({}, film);
             o.isActive = true;
             return o;
           });
-          console.log(result);
-          setSearchResults(result);
+
+          // setSearchResults(result);
+          checkForNomination(result);
         })
         .catch(error => {
           console.log(error)
         })
     };
+  }
+
+  const checkForNomination = (result) => {
+    // let results = [...searchResults];
+    let nominationsDuplicate = [...nominations];
+    result.forEach(film => {
+      nominationsDuplicate.forEach(movie => {
+        if (movie.imdbID === film.imdbID) {
+          film.isActive = false;
+        }
+      })
+    })
+    // console.log(result)
+    setSearchResults(result)
   }
 
   const addToNominations = (nominee, id) => {
