@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { ListGroup } from 'react-bootstrap'
-import { Button } from 'react-bootstrap'
+import { ListGroup, Button, Jumbotron } from 'react-bootstrap'
 
 const ResultsList = ({ searchTerm, results, addNominee }) => {
 
@@ -10,10 +9,10 @@ const ResultsList = ({ searchTerm, results, addNominee }) => {
             fontSize: 18
         },
         container: {
-            borderStyle: 'outset',
             width: 550,
             height: 300,
-            overflow: 'auto'
+            overflow: 'auto',
+            borderRadius: '15px'
         },
         list: {
             marginTop: 10,
@@ -24,10 +23,13 @@ const ResultsList = ({ searchTerm, results, addNominee }) => {
 
     return (
         <div style={styles.container}>
+            <Jumbotron>
+            
             <p style={styles.results}>Press ENTER to view results for "{searchTerm}"</p>
             <ListGroup>
                 {results.map(movie => (
-                    <ListGroup.Item 
+                    <ListGroup.Item
+                    variant="primary" 
                     style={styles.list} 
                     key={movie.imdbID}
                     >~ {movie.Title} ({movie.Year}) 
@@ -36,7 +38,7 @@ const ResultsList = ({ searchTerm, results, addNominee }) => {
                     disabled={!movie.isActive}
                     className="ml-3"
                     size="sm" 
-                    variant="outline-primary"
+                    variant="dark"
                     onClick={() => addNominee(movie, movie.imdbID)}
                     >
                     Nominate
@@ -44,6 +46,7 @@ const ResultsList = ({ searchTerm, results, addNominee }) => {
                     </ListGroup.Item>
                 ))}
             </ListGroup>
+            </Jumbotron>
         </div>
     )
 }

@@ -96,7 +96,7 @@ function App() {
     <>
       <div style={{ display: 'flex', marginTop: 30, justifyContent: 'center' }}>
         <div style={{ paddingRight: 10, marginTop: 55, marginRight: 40 }}>
-          <h1>The Shoppies</h1>
+          <h1 style={{ marginLeft: 10 }}>The Shoppies</h1>
           <SearchBar
             handleChange={handleInputChange}
             searchTerm={searchTerm}
