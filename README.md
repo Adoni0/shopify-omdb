@@ -33,3 +33,6 @@ To run this project, you can clone the repository and use npm install
 ```
 $ npm install
 $ npm start
+
+The deployed app is available to view on Heroku here:
+[View Deployed App](https://shopify-omdb.herokuapp.com/)
