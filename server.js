@@ -14,7 +14,7 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./build/index.html"));
   });
 
-  app.use(function (req, res, next) {
+  app.use(function (req, res) {
     res.status(404).send('Unable to find the requested resource!');
   });
   

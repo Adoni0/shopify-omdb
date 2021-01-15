@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import SearchBar from './components/SearchBar'
 import ResultsList from './components/ResultsList'
 import NominationsList from './components/NominationsList'
-import axios from 'axios'
+import omdbApi from './api/omdbApi'
 
 
 function App() {
@@ -21,13 +21,7 @@ function App() {
   const handleEnterKeyPress = e => {
 
     if (e.keyCode === 13) {
-      axios.get(`http://www.omdbapi.com/`, {
-        params: {
-          s: `${searchTerm}`,
-          apikey: 'ad4a728f',
-          type: 'movie'
-        }
-      })
+      omdbApi.getFilms(searchTerm)
         .then(response => {
           var filmResults = [...response.data.Search];
 
