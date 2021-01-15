@@ -55,10 +55,14 @@ function App() {
 
   const addToNominations = (nominee, id) => {
     let nominationsDuplicate = [...nominations];
-    nominationsDuplicate.push(nominee);
-    setNominations(nominationsDuplicate);
-
-    disableButton(id);
+    
+    if (nominationsDuplicate.length <= 4) {
+      nominationsDuplicate.push(nominee);
+      setNominations(nominationsDuplicate);
+      disableButton(id);
+    } else {
+      alert('You have already made 5 nominations')
+    }
   }
 
   const disableButton = id => {
@@ -87,7 +91,7 @@ function App() {
 
   return (
     <>
-    {nominations.length === 5 ? <Banner /> : null}
+      {nominations.length === 5 ? <Banner /> : null}
       <div style={{ display: 'flex', marginTop: 30, justifyContent: 'center' }}>
         <div style={{ paddingRight: 10, marginTop: 55, marginRight: 40 }}>
           <h1 style={{ marginLeft: 10 }}>The Shoppies</h1>
@@ -107,7 +111,7 @@ function App() {
 
       </div>
 
-      <div style={{ paddingTop: 15 }}>
+      <div style={{ paddingTop: 15, marginLeft: 30, marginTop: 25 }}>
         <NominationsList
           nominations={nominations}
           removeNominee={removeNomination}

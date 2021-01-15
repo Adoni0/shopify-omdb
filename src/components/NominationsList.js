@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
 import Carousel from 'react-multi-carousel'
 import { Button } from 'react-bootstrap'
 
@@ -63,19 +62,24 @@ export default NominationsList;
 const CarouselCard = ({ film, removeNominee }) => {
   
     return (
-        <Card style={{ width: '14rem' }}>
-            <Card.Img variant="top" src={film.Poster} />
-            <Card.Body>
-                <Card.Title>{film.Title}</Card.Title>
-                <Card.Text>{film.Year}</Card.Text>
-                <Button
+        <div className="hvrbox">
+            <img 
+            src={film.Poster}
+            className="hvrbox-layer_bottom"
+            />
+
+            <div className="hvrbox-layer_top">
+                <div className="hvrbox-text">
+                    <p>{film.Title}</p>
+                    <p>{film.Year}</p>
+                    <Button  
                     variant="outline-danger"
                     onClick={() => removeNominee(film, film.imdbID)}
-                >
-                    Remove
-                </Button>
-            </Card.Body>
-        </Card>
+                    >Remove</Button>
+                </div>
+            </div>
+       
+        </div>
 
 
     )
