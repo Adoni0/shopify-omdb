@@ -50,7 +50,7 @@ const NominationsList = ({ nominations, removeNominee }) => {
                         />
                     </div>
                 ))
-                : <h3>No Nominations made</h3>
+                : <h3 style={{ marginLeft: 500 }}>No Nominations made</h3>
             }
         </Carousel>
 
