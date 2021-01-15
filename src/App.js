@@ -4,6 +4,7 @@ import SearchBar from './components/SearchBar'
 import ResultsList from './components/ResultsList'
 import NominationsList from './components/NominationsList'
 import omdbApi from './api/omdbApi'
+import Banner from './components/Banner'
 
 
 function App() {
@@ -86,6 +87,7 @@ function App() {
 
   return (
     <>
+    {nominations.length === 5 ? <Banner /> : null}
       <div style={{ display: 'flex', marginTop: 30, justifyContent: 'center' }}>
         <div style={{ paddingRight: 10, marginTop: 55, marginRight: 40 }}>
           <h1 style={{ marginLeft: 10 }}>The Shoppies</h1>
