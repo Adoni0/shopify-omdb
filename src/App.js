@@ -30,8 +30,6 @@ function App() {
             o.isActive = true;
             return o;
           });
-
-          // setSearchResults(result);
           checkForNomination(result);
         })
         .catch(error => {
