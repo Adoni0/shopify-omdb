@@ -8,7 +8,7 @@ Movie Nomination App
 * [Setup](#setup)
 
 ## Demo
-![](shopify-demo1.gif)
+![](demo1.gif)
 
 ![](demo2.gif)
 
