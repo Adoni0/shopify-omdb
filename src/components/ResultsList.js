@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ListGroup, Button, Jumbotron } from 'react-bootstrap'
 
 const ResultsList = ({ searchTerm, results, addNominee }) => {

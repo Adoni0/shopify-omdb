@@ -48,13 +48,13 @@ function App() {
         }
       })
     })
-   
+
     setSearchResults(result)
   }
 
   const addToNominations = (nominee, id) => {
     let nominationsDuplicate = [...nominations];
-    
+
     if (nominationsDuplicate.length <= 4) {
       nominationsDuplicate.push(nominee);
       setNominations(nominationsDuplicate);
