@@ -25,7 +25,8 @@ const responsive = {
 const NominationsList = ({ nominations, removeNominee }) => {
 
     return (
-
+        <>
+        {nominations.length ?
         <Carousel
             swipeable={true}
             draggable={false}
@@ -41,18 +42,20 @@ const NominationsList = ({ nominations, removeNominee }) => {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
         >
-            {nominations.length
-                ? nominations.map((nominee, index) => (
+             {nominations.map((nominee, index) => (
                     <div key={index}>
                         <CarouselCard 
                         film={nominee}
                         removeNominee={removeNominee}
                         />
                     </div>
-                ))
-                : <h3 style={{ marginLeft: 500 }}>No Nominations made</h3>
-            }
+                ))}
+               
+            
         </Carousel>
+        : <h3 style={{ marginLeft: 'auto' }}>No Nominations made</h3>
+    }
+    </>
 
     )
 }

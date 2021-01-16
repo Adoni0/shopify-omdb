@@ -14,8 +14,7 @@
   box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 
-.hvrbox,
-.hvrbox * {
+.hvrbox{
 	box-sizing: border-box;
 }
 .hvrbox {
@@ -23,7 +22,7 @@
 	display: inline-block;
 	overflow: hidden;
 	max-width: 90%;
-	height: auto;
+  height: auto;
 }
 .hvrbox img {
 	max-width: 90%;
@@ -74,4 +73,7 @@
 }
 .hvrbox.active .hvrbox-text_mobile {
 	display: block;
+}
+.hvrbox-layer_bottom{
+  box-shadow: 1px 3px 10px 3px grey;
 }

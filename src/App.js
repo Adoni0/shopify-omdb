@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import SearchBar from './components/SearchBar'
 import ResultsList from './components/ResultsList'
 import NominationsList from './components/NominationsList'
@@ -40,7 +40,6 @@ function App() {
   }
 
   const checkForNomination = (result) => {
-    // let results = [...searchResults];
     let nominationsDuplicate = [...nominations];
     result.forEach(film => {
       nominationsDuplicate.forEach(movie => {
@@ -49,7 +48,7 @@ function App() {
         }
       })
     })
-    // console.log(result)
+   
     setSearchResults(result)
   }
 
@@ -92,8 +91,8 @@ function App() {
   return (
     <>
       {nominations.length === 5 ? <Banner /> : null}
-      <div style={{ display: 'flex', marginTop: 30, justifyContent: 'center' }}>
-        <div style={{ paddingRight: 10, marginTop: 55, marginRight: 40 }}>
+      <div className="top" style={{ display: 'flex', marginTop: 30, justifyContent: 'space-around', width: "100%", flexFlow: 'wrap' }}>
+        <div className="column" style={{ paddingRight: 10, marginTop: 55, paddingBottom: 20 }}>
           <h1 style={{ marginLeft: 10 }}>The Shoppies</h1>
           <SearchBar
             handleChange={handleInputChange}
@@ -101,7 +100,7 @@ function App() {
             handleEnterKeyPress={handleEnterKeyPress}
           />
         </div>
-        <div style={{ paddingLeft: 10 }}>
+        <div className="column" id="results-col" style={{ paddingLeft: 10 }}>
           <ResultsList
             searchTerm={searchTerm}
             results={searchResults}
@@ -111,7 +110,7 @@ function App() {
 
       </div>
 
-      <div style={{ paddingTop: 15, marginLeft: 30, marginTop: 25 }}>
+      <div style={{ paddingTop: 15, marginLeft: 30, marginRight: 30, marginTop: 25, borderTop: 'inset', borderWidth: '100%' }}>
         <NominationsList
           nominations={nominations}
           removeNominee={removeNomination}

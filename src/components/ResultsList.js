@@ -6,7 +6,8 @@ const ResultsList = ({ searchTerm, results, addNominee }) => {
     const styles = {
         results: {
             fontWeight: 'bold',
-            fontSize: 18
+            fontSize: 18,
+            marginLeft: 15
         },
         container: {
             width: 550,
