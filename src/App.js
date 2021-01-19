@@ -23,7 +23,9 @@ function App() {
 
     if (e.keyCode === 13) {
       omdbApi.getFilms(searchTerm)
+      // API.getFilms(searchTerm)
         .then(response => {
+          // console.log(response)
           var filmResults = [...response.data.Search];
 
           var result = filmResults.map(film => {
